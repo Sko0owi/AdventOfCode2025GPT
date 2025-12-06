@@ -77,7 +77,7 @@ def sent_answer(SESSION_KEY, day, answer, star=1):
     elif "You gave an answer too recently" in text:
         return f"Timeout"
 
-    return "WTF man"   
+    return text
 
 if __name__ == "__main__":
     SESSION_KEY, GEMINI_API_KEY = get_environment()

@@ -36,7 +36,7 @@ jobs:
             echo "=== Attempt $ATTEMPT/$MAX_RETRIES ==="
 
             # CURRENT_DAY=$(TZ="Europe/Warsaw" date +'%Y-%m-%d')
-            CURRENT_DAY=2
+            CURRENT_DAY=4
             echo "Using CURRENT_DAY=$CURRENT_DAY"
 
             python aoc25.py "$CURRENT_DAY"

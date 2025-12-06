@@ -36,23 +36,31 @@ jobs:
             echo "=== Attempt $ATTEMPT/$MAX_RETRIES ==="
 
             # CURRENT_DAY=$(TZ="Europe/Warsaw" date +'%Y-%m-%d')
-            CURRENT_DAY=3
+            CURRENT_DAY=2
             echo "Using CURRENT_DAY=$CURRENT_DAY"
 
             python aoc25.py "$CURRENT_DAY"
-            
-            if [ -f result.txt ] && grep -q "star:" result.txt; then
-              echo "'star:' found in result.txt (run passed)"
 
-              if grep -q "star: 2" result.txt; then
-                echo "PASSED: star 2 found in result.txt ✅"
+            if [ -f result.txt ]; then
+             
+              if grep -q "Already Solved" result.txt; then
+                echo "Already passed!"
                 exit 0
-              else
-                echo "'star:' present but not 'star: 2' (so we passed first lvl) resetting attempts"
-                ATTEMPT=1
               fi
-            else
-              echo "'star' not found in result.txt ❌"
+            
+              if grep -q "star:" result.txt; then
+                echo "'star:' found in result.txt (run passed)"
+
+                if grep -q "star: 2" result.txt; then
+                  echo "PASSED: star 2 found in result.txt ✅"
+                  exit 0
+                else
+                  echo "'star:' present but not 'star: 2' (so we passed first lvl) resetting attempts"
+                  ATTEMPT=1
+                fi
+              else
+                echo "'star' not found in result.txt ❌"
+              fi
             fi
 
             ATTEMPT=$((ATTEMPT + 1))

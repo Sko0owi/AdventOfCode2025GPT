@@ -76,6 +76,8 @@ def sent_answer(SESSION_KEY, day, answer, star=1):
         return f"❌ WRONG ANSWER"
     elif "You gave an answer too recently" in text:
         return f"Timeout"
+    elif "Did you already complete it" in text:
+        return f"Already Solved"
 
     return text
 

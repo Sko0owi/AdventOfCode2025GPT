@@ -35,7 +35,7 @@ jobs:
           while [ $ATTEMPT -le $MAX_RETRIES ]; do
             echo "=== Attempt $ATTEMPT/$MAX_RETRIES ==="
 
-            CURRENT_DAY=$(TZ="Europe/Warsaw" date +'%Y-%m-%d')
+            CURRENT_DAY=$(TZ="Europe/Warsaw" date +'%d')
             echo "Using CURRENT_DAY=$CURRENT_DAY"
 
             python aoc25.py "$CURRENT_DAY"

@@ -27,6 +27,7 @@ jobs:
 
       - name: Run script with retries until PASSED
         run: |
+          set -e
 
           MAX_RETRIES=3
           ATTEMPT=1
@@ -34,7 +35,7 @@ jobs:
           while [ $ATTEMPT -le $MAX_RETRIES ]; do
             echo "=== Attempt $ATTEMPT/$MAX_RETRIES ==="
 
-            % CURRENT_DAY=$(TZ="Europe/Warsaw" date +'%Y-%m-%d')
+            # CURRENT_DAY=$(TZ="Europe/Warsaw" date +'%Y-%m-%d')
             CURRENT_DAY=3
             echo "Using CURRENT_DAY=$CURRENT_DAY"
 

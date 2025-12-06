@@ -39,7 +39,7 @@ jobs:
             CURRENT_DAY=3
             echo "Using CURRENT_DAY=$CURRENT_DAY"
 
-            python your_script.py "$CURRENT_DAY"
+            python aoc25.py "$CURRENT_DAY"
             
             if [ -f result.txt ] && grep -q "star:" result.txt; then
               echo "'star:' found in result.txt (run passed)"

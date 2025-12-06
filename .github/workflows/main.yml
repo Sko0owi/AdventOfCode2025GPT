@@ -1,9 +1,9 @@
 name: Daily AoC 2025 Solve
 
 on:
-  # Every day at 05:00 UTC = 06:00 or 07:00 in Europe/Warsaw
+  # Every day at 05:01 UTC = 06:01 in Europe/Warsaw (only 1-12 December)
   schedule:
-    - cron: '30 10 * * *'
+    - cron: '1 5 1-12 12 *'
   workflow_dispatch:
 jobs:
   run-script:

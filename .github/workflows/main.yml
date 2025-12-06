@@ -25,6 +25,42 @@ jobs:
         run: |
           pip install requests google-genai
 
-      - name: Run script
+      - name: Run script with retries until PASSED
         run: |
-          python aoc25.py 2
+          set -e
+
+          MAX_RETRIES=3
+          ATTEMPT=1
+
+          while [ $ATTEMPT -le $MAX_RETRIES ]; do
+            echo "=== Attempt $ATTEMPT/$MAX_RETRIES ==="
+
+            % CURRENT_DAY=$(TZ="Europe/Warsaw" date +'%Y-%m-%d')
+            CURRENT_DAY=3
+            echo "Using CURRENT_DAY=$CURRENT_DAY"
+
+            python your_script.py "$CURRENT_DAY"
+            
+            if [ -f result.txt ] && grep -q "star:" result.txt; then
+              echo "'star:' found in result.txt (run passed)"
+
+              if grep -q "star: 2" result.txt; then
+                echo "PASSED: star 2 found in result.txt ✅"
+                exit 0
+              else
+                echo "'star:' present but not 'star: 2' (so we passed first lvl) resetting attempts"
+                ATTEMPT=1
+              fi
+            else
+              echo "'star' not found in result.txt ❌"
+            fi
+
+            ATTEMPT=$((ATTEMPT + 1))
+            if [ $ATTEMPT -le $MAX_RETRIES ]; then
+              echo "Retrying..."
+              sleep 5
+            fi
+          done
+
+          echo "Failed after $MAX_RETRIES attempts (no PASSED in result.txt)."
+          exit 1

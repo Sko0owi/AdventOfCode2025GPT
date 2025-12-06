@@ -1,0 +1,30 @@
+name: Daily AoC 2025 Solve
+
+on:
+  schedule:
+    # Every day at 05:00 UTC = 06:00 or 07:00 in Europe/Warsaw
+    - cron: "0 5 * * *"
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      AOC_SESSION: ${{ secrets.AOC_SESSION }}
+      
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          pip install requests google-genai
+
+      - name: Run script
+        run: |
+          python aoc25.py 2

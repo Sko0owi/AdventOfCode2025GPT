@@ -27,7 +27,6 @@ jobs:
 
       - name: Run script with retries until PASSED
         run: |
-          set -e
 
           MAX_RETRIES=3
           ATTEMPT=1

@@ -3,7 +3,7 @@ name: Daily AoC 2025 Solve
 on:
   schedule:
     # Every day at 05:00 UTC = 06:00 or 07:00 in Europe/Warsaw
-    - cron: "0/5 10 * * *"
+    - cron: '0/5 10 * * *'
   workflow_dispatch:
 jobs:
   run-script:
@@ -11,7 +11,7 @@ jobs:
     env:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       AOC_SESSION: ${{ secrets.AOC_SESSION }}
-      
+
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
@@ -41,12 +41,12 @@ jobs:
             python aoc25.py "$CURRENT_DAY"
 
             if [ -f result.txt ]; then
-             
+
               if grep -q "Already Solved" result.txt; then
                 echo "Already passed!"
                 exit 0
               fi
-            
+
               if grep -q "star:" result.txt; then
                 echo "'star:' found in result.txt (run passed)"
 

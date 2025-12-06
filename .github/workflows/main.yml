@@ -29,14 +29,13 @@ jobs:
         run: |
           set -e
 
-          MAX_RETRIES=3
+          MAX_RETRIES=10
           ATTEMPT=1
 
           while [ $ATTEMPT -le $MAX_RETRIES ]; do
             echo "=== Attempt $ATTEMPT/$MAX_RETRIES ==="
 
-            # CURRENT_DAY=$(TZ="Europe/Warsaw" date +'%Y-%m-%d')
-            CURRENT_DAY=4
+            CURRENT_DAY=$(TZ="Europe/Warsaw" date +'%Y-%m-%d')
             echo "Using CURRENT_DAY=$CURRENT_DAY"
 
             python aoc25.py "$CURRENT_DAY"
@@ -56,7 +55,7 @@ jobs:
                   exit 0
                 else
                   echo "'star:' present but not 'star: 2' (so we passed first lvl) resetting attempts"
-                  ATTEMPT=1
+                  ATTEMPT=0 # we later add one so that's why we put here 0
                 fi
               else
                 echo "'star' not found in result.txt ❌"

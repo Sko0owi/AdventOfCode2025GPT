@@ -117,7 +117,7 @@ if __name__ == "__main__":
         f.write(code)
 
     print("Running python script")
-    answer = subprocess.run(['python', 'solve.py'], capture_output=True, text=True, timeout=15).stdout
+    answer = subprocess.run(['python', 'solve.py'], capture_output=True, text=True, timeout=150).stdout
     
     print("Sending answer to website")
     done = sent_answer(SESSION_KEY, day, answer, star=star)

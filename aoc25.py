@@ -40,7 +40,7 @@ def get_task_description_and_input(SESSION_KEY, year = 2025, day = 1):
 def ask_gemini(task_description, input):
     prompt = f"""
         You are professional assistant to help crack Advent of Code task. You will be given whole task description and problem input.
-        Return FAST python code that will solve the puzzle. Input will be given in file input.txt so please read from that. 
+        Return FAST and WORKING python code that will solve the puzzle. Input will be given in file input.txt so please read from that. 
         Only return one answer if there is 2 part please return answer only for that part.
         WRITE ONLY CODE NO EXPLANATION!
         Task description: {task_description}
@@ -49,7 +49,7 @@ def ask_gemini(task_description, input):
         ```python
     """
     response = client.models.generate_content(
-        model="gemini-2.5-pro", 
+        model="gemini-3.0-flash", 
         contents=prompt
     )
 
